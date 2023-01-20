@@ -1,8 +1,8 @@
 .nav {
-    grid-area: n;
-    background-color: lightpink;
+	grid-area: n;
+	background-color: lightpink;
 }
 
 .item {
-    color: whitesmoke;
+	color: whitesmoke;
 }
