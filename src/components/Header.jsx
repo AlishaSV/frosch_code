@@ -1,9 +1,10 @@
 import React from 'react';
+import s from './Header.module.css';
 
 const Header = () => {
     return (
-    <header className='header'>
-        <img src='https://images.unsplash.com/photo-1516876437184-593fda40c7ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80' />
+    <header className={s.header}>
+        <img src='https://thumbs.dreamstime.com/b/illustration-de-g%C3%A2teau-macaron-d-aquarelle-isolement-sur-le-fond-blanc-dessin-color%C3%A9-fran%C3%A7ais-doux-p%C3%A2tisserie-153180154.jpg' />
       </header>
     )
 }
