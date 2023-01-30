@@ -9,16 +9,20 @@
 	
 }
 
+.dialog {
+	text-decoration: none;
+	color: dimgray;
+}
+
 .active {
+	composes: dialog;
 	color: hotpink;
 }
 
-.dialog {
-
-}
 
 .messages {
 	padding: 10px;
+	color: dimgray;
 }
 
 .message {
