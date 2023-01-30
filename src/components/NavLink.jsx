@@ -1,6 +1,6 @@
 import { NavLink as DefaultNavLink } from 'react-router-dom'
+import React from 'react'
 
-// NavbarLink is a component that renders one NavbarLink, which depends on props(path)
 const NavLink = ({ title, path, className, activeStyle }) => {
 
   return (
