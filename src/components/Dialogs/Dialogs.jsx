@@ -1,12 +1,7 @@
 import React from 'react'
 import s from './Dialogs.module.css'
 import NavLink from '../NavLink'
-
-const Message = (props) => {
-  return (
-    <div className={s.message}>{props.message}</div>
-  )
-}
+import Message from './Message'
 
 const Dialogs = (props) => {
   return (
@@ -17,9 +12,9 @@ const Dialogs = (props) => {
         <NavLink path={'/dialogs/3'} title={'Basil'} className={s.dialog} activeStyle={s.active}/>
       </div>
       <div className={s.messages}>
-        <Message message={'Hi'}/>
-        <Message message={'You are frog'}/>
-        <Message message={'Water me please'}/>
+        <Message message={'Hi'} className={s.message}/>
+        <Message message={'You are frog'} className={s.message}/>
+        <Message message={'Water me please'} className={s.message}/>
       </div>
     </div>
   )
