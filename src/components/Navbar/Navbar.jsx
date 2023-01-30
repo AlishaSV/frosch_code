@@ -1,26 +1,22 @@
 import React from 'react'
 import s from './Navbar.module.css'
-import { Link } from 'react-router-dom'
+import NavbarLink from './NavbarLink'
 
-const Navbar = () => {
+function convertToComponents (linksArray) {
 
+  let linksComponents = []
+  for (const linksArrayElement of linksArray) {
+    linksComponents.push(
+      <NavbarLink key={`nav-${linksArrayElement}`} path={linksArrayElement}/>
+    )
+  }
+  return linksComponents
+}
+
+const Navbar = (props) => {
   return (
     <nav className={s.nav}>
-      <div className={s.item}>
-        <Link to={'/profile'}>profile</Link>
-      </div>
-      <div className={s.item}>
-        <Link to={'/dialogs'}>messages</Link>
-      </div>
-      <div className={s.item}>
-        <Link to={'/news'}>news</Link>
-      </div>
-      <div className={s.item}>
-        <Link to={'/music'}>music</Link>
-      </div>
-      <div className={s.item}>
-        <Link to={'/settings'}>settings</Link>
-      </div>
+      {convertToComponents(props.links)}
     </nav>
   )
 }

@@ -5,10 +5,12 @@ import { Outlet } from 'react-router-dom'
 import styles from './Root.module.css'
 
 function Root () {
+  let links = ['Profile', 'Dialogs', 'News', 'Music', 'Settings']
+
   return (
     <div className={styles.appWrapper}>
       <Header/>
-      <Navbar/>
+      <Navbar links={links}/>
       <div className={styles.appWrapperContent}>
         <Outlet/>
       </div>
