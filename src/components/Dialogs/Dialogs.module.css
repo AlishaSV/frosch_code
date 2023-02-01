@@ -6,17 +6,6 @@
 
 .dialogsItem {
 	padding: 10px;
-	
-}
-
-.dialog {
-	text-decoration: none;
-	color: dimgray;
-}
-
-.active {
-	composes: dialog;
-	color: hotpink;
 }
 
 

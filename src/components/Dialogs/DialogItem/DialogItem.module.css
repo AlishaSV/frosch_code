@@ -1,0 +1,9 @@
+.item {
+	color: dimgray;
+	text-decoration: none;
+}
+
+.activeItem {
+	text-decoration: none;
+	color: hotpink;
+}

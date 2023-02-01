@@ -1,15 +1,17 @@
 import React from 'react'
 import s from './Dialogs.module.css'
-import NavLink from '../NavLink'
 import Message from './Message'
+import DialogItem from './DialogItem/DialogItems'
+
+const dialogsData = []
 
 const Dialogs = (props) => {
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>
-        <NavLink path={'/dialogs/1'} title={'Alina'} className={s.dialog} activeStyle={s.active}/>
-        <NavLink path={'/dialogs/2'} title={'Alex'} className={s.dialog} activeStyle={s.active}/>
-        <NavLink path={'/dialogs/3'} title={'Basil'} className={s.dialog} activeStyle={s.active}/>
+        <DialogItem id={1} title={'Alina'}/>
+        <DialogItem id={2} title={'Alex'}/>
+        <DialogItem id={3} title={'Basil'}/>
       </div>
       <div className={s.messages}>
         <Message message={'Hi'} className={s.message}/>
