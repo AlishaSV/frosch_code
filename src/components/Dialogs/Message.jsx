@@ -1,8 +1,9 @@
 import React from 'react'
+import s from './Dialogs.module.css'
 
-const Message = ({ message, className }) => {
+const Message = ({ message }) => {
   return (
-    <div className={className}>{message}</div>
+    <div className={s.message}>{message}</div>
   )
 }
 

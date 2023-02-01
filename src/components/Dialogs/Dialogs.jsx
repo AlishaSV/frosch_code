@@ -5,7 +5,7 @@ import DialogItem from './DialogItem/DialogItems'
 
 const dialogsData = []
 
-const Dialogs = (props) => {
+const Dialogs = () => {
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>
@@ -14,9 +14,9 @@ const Dialogs = (props) => {
         <DialogItem id={3} title={'Basil'}/>
       </div>
       <div className={s.messages}>
-        <Message message={'Hi'} className={s.message}/>
-        <Message message={'You are frog'} className={s.message}/>
-        <Message message={'Water me please'} className={s.message}/>
+        <Message message={'Hi'}/>
+        <Message message={'You are frog'}/>
+        <Message message={'Water me please'}/>
       </div>
     </div>
   )
