@@ -7,6 +7,7 @@ const MyPosts = () => {
     { id: 1, message: 'Hello frog', likes: 20 },
     { id: 2, message: 'I posted this', likes: 15 },
   ]
+
   return (
     <div className={s.posts}>
       <h4>My posts</h4>
@@ -18,8 +19,7 @@ const MyPosts = () => {
       </div>
       <div className={s.posts}>
         <div>
-          <Post message={postsData[0].message} likes={postsData[0].likes}/>
-          <Post message={postsData[1].message} likes={postsData[1].likes}/>
+          {postsData.map((posts) => <Post message={posts.message} likes={posts.likes}/>)}
         </div>
       </div>
     </div>
