@@ -3,18 +3,7 @@ import s from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
 
-const Dialogs = () => {
-  const dialogsData = [
-    { id: 1, title: 'Alina' },
-    { id: 2, title: 'Alex' },
-    { id: 3, title: 'Basil' },
-  ]
-
-  const messagesData = [
-    { id: 1, message: 'Hi' },
-    { id: 2, message: 'You are frog' },
-    { id: 3, message: 'Water me please' },
-  ]
+const Dialogs = ({ dialogsData, messagesData }) => {
 
   return (
     <div className={s.dialogs}>
