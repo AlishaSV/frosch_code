@@ -7,10 +7,10 @@ import Profile from './components/Profile/Profile'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import { dialogsData, messagesData } from './data/Dialogs'
-import { postsData } from './data/Profile'
+import state from './redux/state'
 
 const App = () => {
+  const { dialogsData, messagesData, postsData } = state
   return (
     <BrowserRouter>
       <Routes>
