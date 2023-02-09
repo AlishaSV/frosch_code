@@ -10,13 +10,14 @@ import Settings from './components/Settings/Settings'
 import state from './redux/state'
 
 const App = () => {
-  const { dialogsData, messagesData, postsData } = state
+  const { profilePage, dialogsPage } = state
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Root/>}>
-          <Route path="dialogs/*" element={<Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}/>
-          <Route path="profile/*" element={<Profile postsData={postsData}/>}/>
+          <Route path="dialogs/*"
+                 element={<Dialogs {...dialogsPage}/>}/>
+          <Route path="profile/*" element={<Profile {...profilePage}/>}/>
           <Route path="news/*" element={<News/>}/>
           <Route path="music/*" element={<Music/>}/>
           <Route path="settings/*" element={<Settings/>}/>
