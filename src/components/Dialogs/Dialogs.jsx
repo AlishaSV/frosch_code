@@ -8,11 +8,11 @@ const Dialogs = ({ dialogsData, messagesData }) => {
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>
-        {dialogsData.map((dialog) => <DialogItem id={dialog.id} title={dialog.title}/>)}
+        {dialogsData.map((dialog, index) => <DialogItem key={index} {...dialog}/>)}
       </div>
       <div className={s.messages}>
         {messagesData.map
-        ((messages) => <Message id={messages.id} message={messages.message}/>)}
+        ((messages, index) => <Message key={index} {...messages}/>)}
       </div>
     </div>
   )
