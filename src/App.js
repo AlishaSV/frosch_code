@@ -10,11 +10,11 @@ import Settings from './components/Settings/Settings'
 import state from './redux/state'
 
 const App = () => {
-  const { profilePage, dialogsPage } = state
+  const { profilePage, dialogsPage, root } = state
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Root/>}>
+        <Route path="/" element={<Root {...root}/>}>
           <Route path="dialogs/*"
                  element={<Dialogs {...dialogsPage}/>}/>
           <Route path="profile/*" element={<Profile {...profilePage}/>}/>
