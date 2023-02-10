@@ -1,3 +1,9 @@
+.dialogsWrapper {
+	display: flex;
+	justify-content: right;
+}
+
+
 .dialogs {
 	display: grid;
 	grid-template-columns: 2fr 10fr;
@@ -8,12 +14,15 @@
 	padding: 10px;
 }
 
-
-.messages {
-	padding: 10px;
-	color: dimgray;
+.message {
+	width: 140px;
 }
 
-.message {
-
+.avatar {
+	margin-bottom: 2%;
+	margin-right: 2%;
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
