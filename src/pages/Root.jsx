@@ -4,13 +4,13 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import styles from './Root.module.css'
 
-function Root () {
+function Root ({ navBar }) {
   let links = ['Profile', 'Dialogs', 'News', 'Music', 'Settings']
 
   return (
     <div className={styles.appWrapper}>
       <Header/>
-      <Navbar links={links}/>
+      <Navbar links={links} {...navBar}/>
       <div className={styles.appWrapperContent}>
         <Outlet/>
       </div>
