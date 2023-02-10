@@ -40,6 +40,28 @@ let state = {
         avatar: 'https://images.unsplash.com/photo-1513245543132-31f507417b26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80'
       },
     ]
+  },
+  root: {
+    navBar: {
+      friends:
+        [
+          {
+            id: 1,
+            name: 'Alex',
+            avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-toad-animal-flaticons-lineal-color-flat-icons.png'
+          },
+          {
+            id: 1,
+            name: 'Alex',
+            avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-toad-animal-flaticons-lineal-color-flat-icons.png'
+          },
+          {
+            id: 1,
+            name: 'Alex',
+            avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-toad-animal-flaticons-lineal-color-flat-icons.png'
+          }
+        ]
+    }
   }
 }
 
