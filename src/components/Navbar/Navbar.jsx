@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './Navbar.module.css'
 import NavbarLink from './NavbarLink'
+import Sidebar from '../Sidebar/Sidebar'
 
 function convertToComponents (linksArray) {
 
@@ -17,6 +18,7 @@ const Navbar = (props) => {
   return (
     <nav className={s.nav}>
       {convertToComponents(props.links)}
+      <Sidebar/>
     </nav>
   )
 }
