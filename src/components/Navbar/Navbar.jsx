@@ -3,23 +3,14 @@ import s from './Navbar.module.css'
 import NavbarLink from './NavbarLink'
 import Sidebar from '../Sidebar/Sidebar'
 
-function convertToComponents (linksArray) {
-
-  let linksComponents = []
-  for (const linksArrayElement of linksArray) {
-    linksComponents.push(
-      <NavbarLink key={`nav-${linksArrayElement}`} path={linksArrayElement}/>
-    )
-  }
-  return linksComponents
-}
-
-const Navbar = (props) => {
+const Navbar = ({ friends, links }) => {
   return (
-    <nav className={s.nav}>
-      {convertToComponents(props.links)}
-      <Sidebar/>
-    </nav>
+    <div className={s.nav}>
+      <nav>
+        {links.map((link, index) => <NavbarLink key={`nav-${index}`} path={link}/>)}
+      </nav>
+      <Sidebar friends={friends}/>
+    </div>
   )
 }
 
