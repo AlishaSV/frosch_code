@@ -15,7 +15,7 @@ const MyPosts = ({ postsData }) => {
       </div>
       <div className={s.posts}>
         <div>
-          {postsData.map((posts) => <Post message={posts.message} likes={posts.likes}/>)}
+          {postsData.map((posts, index) => <Post key={index} message={posts.message} likes={posts.likes}/>)}
         </div>
       </div>
     </div>
