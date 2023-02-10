@@ -1,10 +1,10 @@
 import React from 'react'
-import s from './Sidebar.module.css'
+import Friends from './Friends/Friends'
 
-const Sidebar = () => {
+const Sidebar = ({ friends }) => {
   return (
-    <div className={s.appWrapperContent}>
-      Friends
+    <div>
+      <Friends friends={friends}/>
     </div>
   )
 }
