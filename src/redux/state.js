@@ -22,6 +22,11 @@ let state = {
         title: 'Basil',
         avatar: 'https://img.icons8.com/external-filled-color-icons-papa-vector/512/external-Schefflera-allergens-filled-color-icons-papa-vector.png'
       },
+      {
+        id: 4,
+        title: 'Sebastian',
+        avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-dracaena-plants-flaticons-lineal-color-flat-icons.png'
+      },
     ],
     messagesData: [
       {
@@ -63,6 +68,11 @@ let state = {
         ]
     }
   }
+}
+
+export const addPost = (postMessage) => {
+  let newPost = { id: 1, message: postMessage, likes: 0 }
+  state.profilePage.postsData.push(newPost)
 }
 
 export default state

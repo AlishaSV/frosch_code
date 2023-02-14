@@ -4,6 +4,11 @@ import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
 
 const Dialogs = ({ dialogsData, messagesData }) => {
+  let newPostElement = React.createRef()
+  let sendText = () => {
+    let text = newPostElement.current.value
+    alert(text)
+  }
 
   return (
     <div className={s.dialogs}>
@@ -13,6 +18,12 @@ const Dialogs = ({ dialogsData, messagesData }) => {
       <div className={s.messages}>
         {messagesData.map
         ((messages, index) => <Message key={index} {...messages}/>)}
+        <div className={s.text}>
+          <textarea ref={newPostElement}></textarea>
+          <div>
+            <button onClick={sendText}>send</button>
+          </div>
+        </div>
       </div>
     </div>
   )

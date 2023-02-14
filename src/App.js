@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import state from './redux/state'
+import state, { addPost } from './redux/state'
 
 const App = () => {
   const { profilePage, dialogsPage, root } = state
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Root {...root}/>}>
           <Route path="dialogs/*"
                  element={<Dialogs {...dialogsPage}/>}/>
-          <Route path="profile/*" element={<Profile {...profilePage}/>}/>
+          <Route path="profile/*" element={<Profile addPost={addPost} {...profilePage}/>}/>
           <Route path="news/*" element={<News/>}/>
           <Route path="music/*" element={<Music/>}/>
           <Route path="settings/*" element={<Settings/>}/>
