@@ -1,14 +1,15 @@
 import React from 'react'
 import s from './Post.module.css'
 
-const Post = (props) => {
+const Post = ({ message, likes, id, deletePost }) => {
   return (
     <div className={s.item}>
+      <button onClick={() => {deletePost(id)}}>delete</button>
       <img alt={'post'}
            src="https://img.icons8.com/doodle/512/gender-neutral-user.png"/>
-      {props.message}
+      {message}
       <div>
-        {props.likes} likes
+        {likes} likes
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = ({ postsData, addPost }) => {
+const MyPosts = ({ postsData, addPost, deletePost }) => {
   let newPost = React.createRef()
   let handlerAddPost = () => {
     let text = newPost.current.value
@@ -19,7 +19,7 @@ const MyPosts = ({ postsData, addPost }) => {
       </div>
       <div className={s.posts}>
         <div>
-          {postsData.map((posts, index) => <Post key={index} message={posts.message} likes={posts.likes}/>)}
+          {postsData.map((post, index) => <Post key={index} {...post} deletePost={deletePost}/>)}
         </div>
       </div>
     </div>
