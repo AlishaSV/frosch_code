@@ -1,3 +1,5 @@
+import { reRenderEntireTree } from '../render'
+
 let state = {
   profilePage: {
     postsData: [
@@ -71,8 +73,24 @@ let state = {
 }
 
 export const addPost = (postMessage) => {
-  let newPost = { id: 1, message: postMessage, likes: 0 }
+  const posts = state.profilePage.postsData
+  let newPostId = 0
+  if (posts.length >= 1) {
+    const lastElementIndex = posts.length - 1
+    newPostId = posts[lastElementIndex].id + 1
+  }
+  let newPost = { id: newPostId, message: postMessage, likes: 0 }
   state.profilePage.postsData.push(newPost)
+  reRenderEntireTree()
+}
+
+export const deletePostById = (id) => {
+  
+  let postIndex = state.profilePage.postsData.findIndex((post) => post.id === id)
+  if (postIndex !== -1) {
+    state.profilePage.postsData.splice(postIndex, 1)
+    reRenderEntireTree()
+  }
 }
 
 export default state
