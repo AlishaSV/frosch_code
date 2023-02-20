@@ -3,11 +3,9 @@ import s from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
 
-const Dialogs = ({ dialogsData, messagesData }) => {
-  let newPostElement = React.createRef()
+const Dialogs = ({ dialogsData, messagesData, changeMessageInput }) => {
   let sendText = () => {
-    let text = newPostElement.current.value
-    alert(text)
+    alert(messagesData.messageInput)
   }
 
   return (
@@ -16,10 +14,14 @@ const Dialogs = ({ dialogsData, messagesData }) => {
         {dialogsData.map((dialog, index) => <DialogItem key={index} {...dialog}/>)}
       </div>
       <div className={s.messages}>
-        {messagesData.map
+        {messagesData.messages.map
         ((messages, index) => <Message key={index} {...messages}/>)}
         <div className={s.text}>
-          <textarea ref={newPostElement}></textarea>
+          <textarea
+            onChange={(event) => {
+              changeMessageInput(event.target.value)
+            }}
+            value={messagesData.messageInput}/>
           <div>
             <button onClick={sendText}>send</button>
           </div>
