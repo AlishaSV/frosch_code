@@ -6,6 +6,7 @@ import DialogItem from './DialogItem/DialogItems'
 const Dialogs = ({ dialogsData, messagesData, changeMessageInput }) => {
   let sendText = () => {
     alert(messagesData.messageInput)
+    changeMessageInput('')
   }
 
   return (
