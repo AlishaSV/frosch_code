@@ -1,4 +1,8 @@
-import { reRenderEntireTree } from '../render'
+let reRenderEntireTree = () => {}
+
+export const setReRenderEntireTree = (customReRenderEntireTree) => {
+  reRenderEntireTree = customReRenderEntireTree
+}
 
 let state = {
   profilePage: {
@@ -107,9 +111,9 @@ export const addPost = () => {
 
 export const deletePostById = (id) => {
 
-  let postIndex = state.profilePage.postsData.findIndex((post) => post.id === id)
+  let postIndex = state.profilePage.postsData.posts.findIndex((post) => post.id === id)
   if (postIndex !== -1) {
-    state.profilePage.postsData.splice(postIndex, 1)
+    state.profilePage.postsData.posts.splice(postIndex, 1)
     reRenderEntireTree()
   }
 }
