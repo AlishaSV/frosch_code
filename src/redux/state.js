@@ -4,63 +4,94 @@ export const setReRenderEntireTree = (customReRenderEntireTree) => {
   reRenderEntireTree = customReRenderEntireTree
 }
 
-let state = {
-  profilePage: {
-    postsData:
-      {
-        postInput: '',
-        posts:
-          [
-            { id: 1, message: 'Hello frog', likes: 20 },
-            { id: 2, message: 'I posted this', likes: 15 },
-          ]
-      },
-  },
-  dialogsPage: {
-    dialogsData: [
-      {
-        id: 1,
-        title: 'Alina',
-        avatar: 'https://img.icons8.com/external-justicon-flat-justicon/512/external-cat-egypt-justicon-flat-justicon.png'
-      },
-      {
-        id: 2,
-        title: 'Alex',
-        avatar: 'https://img.icons8.com/fluency/512/coder-in-hoodie.png'
-      },
-      {
-        id: 3,
-        title: 'Basil',
-        avatar: 'https://img.icons8.com/external-filled-color-icons-papa-vector/512/external-Schefflera-allergens-filled-color-icons-papa-vector.png'
-      },
-      {
-        id: 4,
-        title: 'Sebastian',
-        avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-dracaena-plants-flaticons-lineal-color-flat-icons.png'
-      },
-    ],
-    messagesData: {
-      messageInput: '',
-      messages:
+const profilePage = {
+  postsData:
+    {
+      postInput: '',
+      posts:
         [
-          {
-            id: 1,
-            message: 'Hi',
-            avatar: 'https://img.icons8.com/external-justicon-flat-justicon/512/external-cat-egypt-justicon-flat-justicon.png'
-          },
-          {
-            id: 2,
-            message: 'You are frog',
-            avatar: 'https://img.icons8.com/fluency/512/coder-in-hoodie.png'
-          },
-          {
-            id: 3,
-            message: 'Water me please',
-            avatar: 'https://img.icons8.com/external-filled-color-icons-papa-vector/512/external-Schefflera-allergens-filled-color-icons-papa-vector.png'
-          },
-        ]
+          { id: 1, message: 'Hello frog', likes: 20 },
+          { id: 2, message: 'I posted this', likes: 15 },
+        ],
+      addPost: function () {
+        let newPostId = 0
+        if (this.posts.length >= 1) {
+          const lastElementIndex = this.posts.length - 1
+          newPostId = this.posts[lastElementIndex].id + 1
+        }
+        let newPost = { id: newPostId, message: this.postInput, likes: 0 }
+        this.postInput = ''
+        this.posts.push(newPost)
+        reRenderEntireTree()
+      },
+      deletePostById: function (id) {
+        let postIndex = this.posts.findIndex((post) => post.id === id)
+        if (postIndex !== -1) {
+          this.posts.splice(postIndex, 1)
+          reRenderEntireTree()
+        }
+      },
+      changePostInput: function (postInput) {
+        this.postInput = postInput
+        reRenderEntireTree()
+      }
+    },
+}
+
+const dialogsPage = {
+  dialogsData: [
+    {
+      id: 1,
+      title: 'Alina',
+      avatar: 'https://img.icons8.com/external-justicon-flat-justicon/512/external-cat-egypt-justicon-flat-justicon.png'
+    },
+    {
+      id: 2,
+      title: 'Alex',
+      avatar: 'https://img.icons8.com/fluency/512/coder-in-hoodie.png'
+    },
+    {
+      id: 3,
+      title: 'Basil',
+      avatar: 'https://img.icons8.com/external-filled-color-icons-papa-vector/512/external-Schefflera-allergens-filled-color-icons-papa-vector.png'
+    },
+    {
+      id: 4,
+      title: 'Sebastian',
+      avatar: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/512/external-dracaena-plants-flaticons-lineal-color-flat-icons.png'
+    },
+  ],
+  messagesData: {
+    messageInput: '',
+    messages:
+      [
+        {
+          id: 1,
+          message: 'Hi',
+          avatar: 'https://img.icons8.com/external-justicon-flat-justicon/512/external-cat-egypt-justicon-flat-justicon.png'
+        },
+        {
+          id: 2,
+          message: 'You are frog',
+          avatar: 'https://img.icons8.com/fluency/512/coder-in-hoodie.png'
+        },
+        {
+          id: 3,
+          message: 'Water me please',
+          avatar: 'https://img.icons8.com/external-filled-color-icons-papa-vector/512/external-Schefflera-allergens-filled-color-icons-papa-vector.png'
+        },
+      ],
+    changeMessageInput: function (messageInput) {
+      this.messageInput = messageInput
+      reRenderEntireTree()
     }
-  },
+  }
+
+}
+
+let state = {
+  profilePage: profilePage,
+  dialogsPage: dialogsPage,
   root: {
     navBar: {
       friends:
@@ -82,39 +113,6 @@ let state = {
           }
         ]
     }
-  }
-}
-
-export const changePostInput = (postInput) => {
-  state.profilePage.postsData.postInput = postInput
-  reRenderEntireTree()
-}
-
-export const changeMessageInput = (messageInput) => {
-  state.dialogsPage.messagesData.messageInput = messageInput
-  reRenderEntireTree()
-}
-
-export const addPost = () => {
-  const postMessage = state.profilePage.postsData.postInput
-  const posts = state.profilePage.postsData.posts
-  let newPostId = 0
-  if (posts.length >= 1) {
-    const lastElementIndex = posts.length - 1
-    newPostId = posts[lastElementIndex].id + 1
-  }
-  let newPost = { id: newPostId, message: postMessage, likes: 0 }
-  state.profilePage.postsData.postInput = ''
-  state.profilePage.postsData.posts.push(newPost)
-  reRenderEntireTree()
-}
-
-export const deletePostById = (id) => {
-
-  let postIndex = state.profilePage.postsData.posts.findIndex((post) => post.id === id)
-  if (postIndex !== -1) {
-    state.profilePage.postsData.posts.splice(postIndex, 1)
-    reRenderEntireTree()
   }
 }
 

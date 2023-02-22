@@ -2,28 +2,30 @@ import React from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = ({ postsData, addPost, deletePost, changePostInput }) => {
-
+const MyPosts = ({ postsData }) => {
+  
   return (
     <div className={s.posts}>
       <h4>My posts</h4>
       <div>
         <textarea
           onChange={(event) => {
-            changePostInput(event.target.value)
+            postsData.changePostInput(event.target.value)
           }}
           value={postsData.postInput}
         />
         <div>
           <button onClick={() => {
-            addPost()
+            postsData.addPost()
           }}>Add post
           </button>
         </div>
       </div>
       <div className={s.posts}>
         <div>
-          {postsData.posts.map((post, index) => <Post key={index} {...post} deletePost={deletePost}/>)}
+          {postsData.posts.map((post, index) => <Post key={index} {...post} deletePost={(id) => {
+            postsData.deletePostById(id)
+          }}/>)}
         </div>
       </div>
     </div>
