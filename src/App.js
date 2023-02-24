@@ -7,9 +7,8 @@ import Profile from './components/Profile/Profile'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import state from './redux/state'
 
-const App = () => {
+const App = ({ state }) => {
   const { profilePage, dialogsPage, root } = state
   return (
     <BrowserRouter>
