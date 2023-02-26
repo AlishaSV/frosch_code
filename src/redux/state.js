@@ -12,13 +12,37 @@ let store = {
       }
     },
   },
+  _callSubscriber: () => {},
   subscribe (observer) {
-    const stateObserver = () => {observer(this._state)}
-    this._state.dialogsPage.messagesData.subscribe(stateObserver)
-    this._state.profilePage.postsData.subscribe(stateObserver)
+    this._callSubscriber = () => {observer(this)}
   },
   getState () {
     return this._state
+  },
+  // action = {type:"", value:""}
+  dispatch (action) {
+    switch (action.type) {
+      case 'ADD-POST': {
+        this._state.profilePage.postsData.addPost()
+        break
+      }
+      case 'DELETE-POST': {
+        this._state.profilePage.postsData.deletePostById(action.value)
+        break
+      }
+      case 'CHANGE-MESSAGE-INPUT': {
+        this._state.dialogsPage.messagesData.changeMessageInput(action.value)
+        break
+      }
+      case 'CHANGE-POST-INPUT': {
+        this._state.profilePage.postsData.changePostInput(action.value)
+        break
+      }
+      default: {
+        console.log('default case')
+      }
+    }
+    this._callSubscriber()
   }
 }
 

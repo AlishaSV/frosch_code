@@ -3,10 +3,10 @@ import s from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
 
-const Dialogs = ({ dialogsData, messagesData }) => {
+const Dialogs = ({ dialogsData, messagesData, changeMessageInput }) => {
   let sendText = () => {
     alert(messagesData.messageInput)
-    messagesData.changeMessageInput('')
+    changeMessageInput('')
   }
 
   return (
@@ -20,7 +20,7 @@ const Dialogs = ({ dialogsData, messagesData }) => {
         <div className={s.text}>
           <textarea
             onChange={(event) => {
-              messagesData.changeMessageInput(event.target.value)
+              changeMessageInput(event.target.value)
             }}
             value={messagesData.messageInput}/>
           <div>

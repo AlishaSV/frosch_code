@@ -2,7 +2,7 @@ import React from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = ({ postsData }) => {
+const MyPosts = ({ postsData, changePostInput, deletePostById, addPost }) => {
 
   return (
     <div className={s.posts}>
@@ -10,13 +10,13 @@ const MyPosts = ({ postsData }) => {
       <div>
         <textarea
           onChange={(event) => {
-            postsData.changePostInput(event.target.value)
+            changePostInput(event.target.value)
           }}
           value={postsData.postInput}
         />
         <div>
           <button onClick={() => {
-            postsData.addPost()
+            addPost()
           }}>Add post
           </button>
         </div>
@@ -24,7 +24,7 @@ const MyPosts = ({ postsData }) => {
       <div className={s.posts}>
         <div>
           {postsData.posts.map((post, index) => <Post key={index} {...post}
-                                                      deletePost={postsData.deletePostById.bind(postsData)}/>)}
+                                                      deletePost={deletePostById}/>)}
         </div>
       </div>
     </div>
