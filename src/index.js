@@ -7,16 +7,15 @@ import store from './redux/state'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-export const reRenderEntireTree = () => {
+export const reRenderEntireTree = (state) => {
   root.render(
     <React.StrictMode>
-      <App state={store._state}/>
+      <App state={state}/>
     </React.StrictMode>
   )
 }
-
-reRenderEntireTree()
-store._state.subscribe(reRenderEntireTree)
+reRenderEntireTree(store.getState())
+store.subscribe(reRenderEntireTree)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
