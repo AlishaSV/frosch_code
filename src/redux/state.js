@@ -2,6 +2,29 @@ import { friends } from './friends'
 import { profilePage } from './profilePage/profilePage'
 import { dialogsPage } from './dialogsPage/dialogsPage'
 
+let ADD_POST = 'ADD-POST'
+let DELETE_POST = 'DELETE-POST'
+let CHANGE_POST_INPUT = 'CHANGE-POST-INPUT'
+let CHANGE_MESSAGE_INPUT = 'CHANGE-MESSAGE-INPUT'
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+export const deletePostByIdActionCreator = (id) =>
+  ({
+    type: DELETE_POST,
+    value: id
+  })
+
+export const changePostInputActionCreator = (postInput) => ({
+  type: CHANGE_POST_INPUT,
+  value: postInput
+})
+
+export const changeMessageInputActionCreator = (messageInput) => ({
+  type: CHANGE_MESSAGE_INPUT,
+  value: messageInput
+})
+
 let store = {
   _state: {
     profilePage: profilePage,
@@ -19,7 +42,6 @@ let store = {
   getState () {
     return this._state
   },
-  // action = {type:"", value:""}
   dispatch (action) {
     switch (action.type) {
       case 'ADD-POST': {

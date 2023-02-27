@@ -7,6 +7,12 @@ import Profile from './components/Profile/Profile'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
+import {
+  addPostActionCreator,
+  changeMessageInputActionCreator,
+  changePostInputActionCreator,
+  deletePostByIdActionCreator
+} from './redux/state'
 
 const App = ({ state, dispatch }) => {
   const { profilePage, dialogsPage, root } = state
@@ -19,7 +25,7 @@ const App = ({ state, dispatch }) => {
                    <Dialogs
                      {...dialogsPage}
                      changeMessageInput={(messageInput) => {
-                       dispatch({ type: 'CHANGE-MESSAGE-INPUT', value: messageInput })
+                       dispatch(changeMessageInputActionCreator(messageInput))
                      }}
                    />
                  }
@@ -29,13 +35,13 @@ const App = ({ state, dispatch }) => {
                    <Profile
                      {...profilePage}
                      changePostInput={(postInput) => {
-                       dispatch({ type: 'CHANGE-POST-INPUT', value: postInput })
+                       dispatch(changePostInputActionCreator(postInput))
                      }}
                      addPost={() => {
-                       dispatch({ type: 'ADD-POST' })
+                       dispatch(addPostActionCreator())
                      }}
                      deletePostById={(id) => {
-                       dispatch({ type: 'DELETE-POST', value: id })
+                       dispatch(deletePostByIdActionCreator(id))
                      }}
                    />
                  }
