@@ -6,6 +6,7 @@ let ADD_POST = 'ADD-POST'
 let DELETE_POST = 'DELETE-POST'
 let CHANGE_POST_INPUT = 'CHANGE-POST-INPUT'
 let CHANGE_MESSAGE_INPUT = 'CHANGE-MESSAGE-INPUT'
+let SEND_MESSAGE = 'SEND-MESSAGE'
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
 
@@ -18,6 +19,10 @@ export const deletePostByIdActionCreator = (id) =>
 export const changePostInputActionCreator = (postInput) => ({
   type: CHANGE_POST_INPUT,
   value: postInput
+})
+
+export const sendMessageActionCreator = () => ({
+  type: SEND_MESSAGE,
 })
 
 export const changeMessageInputActionCreator = (messageInput) => ({
@@ -56,8 +61,12 @@ let store = {
         this._state.dialogsPage.messagesData.changeMessageInput(action.value)
         break
       }
+      case 'SEND-MESSAGE': {
+        this._state.dialogsPage.messagesData.sendMessage()
+        break
+      }
       case 'CHANGE-POST-INPUT': {
-        this._state.profilePage.postsData.changePostInput(action.value)
+        this._state.profilePage.postsData.changePostInput()
         break
       }
       default: {

@@ -7,6 +7,10 @@ export const dialogsPage = {
     messages: messages,
     changeMessageInput: function (messageInput) {
       this.messageInput = messageInput
+    },
+    sendMessage: function () {
+      this.messages.push({ id: 4, message: this.messageInput, avatar: '' })
+      this.messageInput = ''
     }
   }
 }

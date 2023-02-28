@@ -11,7 +11,8 @@ import {
   addPostActionCreator,
   changeMessageInputActionCreator,
   changePostInputActionCreator,
-  deletePostByIdActionCreator
+  deletePostByIdActionCreator,
+  sendMessageActionCreator
 } from './redux/state'
 
 const App = ({ state, dispatch }) => {
@@ -26,6 +27,10 @@ const App = ({ state, dispatch }) => {
                      {...dialogsPage}
                      changeMessageInput={(messageInput) => {
                        dispatch(changeMessageInputActionCreator(messageInput))
+                     }}
+                     {...dialogsPage}
+                     sendMessage={() => {
+                       dispatch(sendMessageActionCreator())
                      }}
                    />
                  }

@@ -3,12 +3,8 @@ import s from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
 
-const Dialogs = ({ dialogsData, messagesData, changeMessageInput }) => {
-  let sendText = () => {
-    alert(messagesData.messageInput)
-    changeMessageInput('')
-  }
-
+const Dialogs = ({ dialogsData, messagesData, changeMessageInput, sendMessage }) => {
+  
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>
@@ -24,7 +20,7 @@ const Dialogs = ({ dialogsData, messagesData, changeMessageInput }) => {
             }}
             value={messagesData.messageInput}/>
           <div>
-            <button onClick={sendText}>send</button>
+            <button onClick={() => {sendMessage()}}>send</button>
           </div>
         </div>
       </div>
