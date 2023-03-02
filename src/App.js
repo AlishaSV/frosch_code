@@ -9,11 +9,10 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import {
   addPostActionCreator,
-  changeMessageInputActionCreator,
   changePostInputActionCreator,
   deletePostByIdActionCreator,
-  sendMessageActionCreator
-} from './redux/state'
+} from './redux/profile-reducer'
+import { changeMessageInputActionCreator, sendMessageActionCreator } from './redux/dialogs-reducer'
 
 const App = ({ state, dispatch }) => {
   const { profilePage, dialogsPage, root } = state
