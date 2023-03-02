@@ -1,7 +1,9 @@
+import { dialogsPage as initDialogsPage } from './dialogsPage/dialogsPage'
+
 let CHANGE_MESSAGE_INPUT = 'CHANGE-MESSAGE-INPUT'
 let SEND_MESSAGE = 'SEND-MESSAGE'
 
-const dialogsReducer = (dialogsPage, action) => {
+const dialogsReducer = (dialogsPage = initDialogsPage, action) => {
   switch (action.type) {
     case CHANGE_MESSAGE_INPUT: {
       dialogsPage.messagesData.changeMessageInput(action.value)
@@ -15,6 +17,7 @@ const dialogsReducer = (dialogsPage, action) => {
       console.log('default case')
     }
   }
+  return dialogsPage
 }
 
 export const sendMessageActionCreator = () => ({

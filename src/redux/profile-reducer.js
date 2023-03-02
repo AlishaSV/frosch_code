@@ -1,8 +1,10 @@
+import { profilePage as initProfilePage } from './profilePage/profilePage'
+
 let ADD_POST = 'ADD-POST'
 let DELETE_POST = 'DELETE-POST'
 let CHANGE_POST_INPUT = 'CHANGE-POST-INPUT'
 
-const profileReducer = (profilePage, action) => {
+const profileReducer = (profilePage = initProfilePage, action) => {
   switch (action.type) {
     case ADD_POST: {
       profilePage.postsData.addPost()
@@ -20,6 +22,7 @@ const profileReducer = (profilePage, action) => {
       console.log('default case')
     }
   }
+  return profilePage
 }
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
