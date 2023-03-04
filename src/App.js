@@ -1,18 +1,12 @@
 import React from 'react'
 import './App.css'
-import Dialogs from './components/Dialogs/Dialogs'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Root from './pages/Root'
 import Profile from './components/Profile/Profile'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import {
-  addPostActionCreator,
-  changePostInputActionCreator,
-  deletePostByIdActionCreator,
-} from './redux/profile-reducer'
-import { changeMessageInputActionCreator, sendMessageActionCreator } from './redux/dialogs-reducer'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 
 const App = ({ state, dispatch }) => {
   const { profilePage, dialogsPage, root } = state
@@ -22,15 +16,9 @@ const App = ({ state, dispatch }) => {
         <Route path="/" element={<Root {...root}/>}>
           <Route path="dialogs/*"
                  element={
-                   <Dialogs
+                   <DialogsContainer
                      {...dialogsPage}
-                     changeMessageInput={(messageInput) => {
-                       dispatch(changeMessageInputActionCreator(messageInput))
-                     }}
-                     {...dialogsPage}
-                     sendMessage={() => {
-                       dispatch(sendMessageActionCreator())
-                     }}
+                     dispatch={dispatch}
                    />
                  }
           />
@@ -38,15 +26,7 @@ const App = ({ state, dispatch }) => {
                  element={
                    <Profile
                      {...profilePage}
-                     changePostInput={(postInput) => {
-                       dispatch(changePostInputActionCreator(postInput))
-                     }}
-                     addPost={() => {
-                       dispatch(addPostActionCreator())
-                     }}
-                     deletePostById={(id) => {
-                       dispatch(deletePostByIdActionCreator(id))
-                     }}
+                     dispatch={dispatch}
                    />
                  }
           />

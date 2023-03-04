@@ -1,14 +1,13 @@
 import React from 'react'
-import MyPosts from './MyPosts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
 
-const Profile = ({ postsData, changePostInput, deletePostById, addPost }) => {
+const Profile = ({ postsData, dispatch }) => {
 
   return (
     <div>
       <ProfileInfo/>
-      <MyPosts postsData={postsData} changePostInput={changePostInput} deletePostById={deletePostById}
-               addPost={addPost}/>
+      <MyPostsContainer postsData={postsData} dispatch={dispatch}/>
     </div>
   )
 }
