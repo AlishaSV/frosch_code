@@ -8,26 +8,20 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 
-const App = ({ state, dispatch }) => {
-  const { profilePage, dialogsPage, root } = state
+const App = () => {
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Root {...root}/>}>
+        <Route path="/" element={<Root/>}>
           <Route path="dialogs/*"
                  element={
-                   <DialogsContainer
-                     {...dialogsPage}
-                     dispatch={dispatch}
-                   />
+                   <DialogsContainer/>
                  }
           />
           <Route path="profile/*"
                  element={
-                   <Profile
-                     {...profilePage}
-                     dispatch={dispatch}
-                   />
+                   <Profile/>
                  }
           />
           <Route path="news/*" element={<News/>}/>

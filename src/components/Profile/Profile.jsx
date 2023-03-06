@@ -2,12 +2,12 @@ import React from 'react'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 
-const Profile = ({ postsData, dispatch }) => {
+const Profile = ({}) => {
 
   return (
     <div>
       <ProfileInfo/>
-      <MyPostsContainer postsData={postsData} dispatch={dispatch}/>
+      <MyPostsContainer/>
     </div>
   )
 }
