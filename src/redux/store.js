@@ -1,5 +1,5 @@
 import { friends } from './friends'
-import { profilePage } from './profilePage/profilePage'
+import { initProfilePage } from './profilePage/initProfilePage'
 import { dialogsPage } from './dialogsPage/dialogsPage'
 import profileReducer from './profile-reducer'
 import dialogsReducer from './dialogs-reducer'
@@ -7,7 +7,7 @@ import rootReducer from './root-reducer'
 
 let store = {
   _state: {
-    profilePage: profilePage,
+    profilePage: initProfilePage,
     dialogsPage: dialogsPage,
     root: {
       navBar: {

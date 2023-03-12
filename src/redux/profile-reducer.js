@@ -1,28 +1,30 @@
-import { profilePage as initProfilePage } from './profilePage/profilePage'
+import { addPost, changePostInput, deletePostById, initProfilePage } from './profilePage/initProfilePage'
 
 let ADD_POST = 'ADD-POST'
 let DELETE_POST = 'DELETE-POST'
 let CHANGE_POST_INPUT = 'CHANGE-POST-INPUT'
 
 const profileReducer = (profilePage = initProfilePage, action) => {
+  const newProfilePage = { ...profilePage }
   switch (action.type) {
     case ADD_POST: {
-      profilePage.postsData.addPost()
+      newProfilePage.postsData = addPost(profilePage.postsData)
       break
     }
     case DELETE_POST: {
-      profilePage.postsData.deletePostById(action.value)
+      newProfilePage.postsData = deletePostById(action.value, profilePage.postsData)
       break
     }
     case CHANGE_POST_INPUT: {
-      profilePage.postsData.changePostInput()
+      newProfilePage.postsData = changePostInput(action.value, profilePage.postsData)
       break
     }
     default: {
       console.log('default case')
     }
   }
-  return profilePage
+
+  return newProfilePage
 }
 
 export const addPostActionCreator = () => ({ type: ADD_POST })

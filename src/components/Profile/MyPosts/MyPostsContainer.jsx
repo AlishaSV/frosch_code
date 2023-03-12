@@ -6,11 +6,11 @@ import {
   deletePostByIdActionCreator
 } from '../../../redux/profile-reducer'
 import { connect } from 'react-redux'
-import { profilePage } from '../../../redux/profilePage/profilePage'
 
-let mapStateToProps = () => {
+let mapStateToProps = (state) => {
+  const { postsData } = state.profilePage
   return {
-    postsData: profilePage.postsData
+    postsData
   }
 }
 

@@ -1,4 +1,4 @@
-import { dialogsPage as initDialogsPage } from './dialogsPage/dialogsPage'
+import { changeMessageInput, dialogsPage as initDialogsPage, sendMessage } from './dialogsPage/dialogsPage'
 
 let CHANGE_MESSAGE_INPUT = 'CHANGE-MESSAGE-INPUT'
 let SEND_MESSAGE = 'SEND-MESSAGE'
@@ -8,11 +8,11 @@ const dialogsReducer = (dialogsPage = initDialogsPage, action) => {
   const { messagesData } = dialogsPage
   switch (action.type) {
     case CHANGE_MESSAGE_INPUT: {
-      dialogsPageCopy.messagesData = messagesData.changeMessageInput(action.value)
+      dialogsPageCopy.messagesData = changeMessageInput(action.value, messagesData)
       break
     }
     case SEND_MESSAGE: {
-      dialogsPage.messagesData = messagesData.sendMessage()
+      dialogsPageCopy.messagesData = sendMessage(messagesData)
       break
     }
     default: {
