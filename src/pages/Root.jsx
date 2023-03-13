@@ -5,7 +5,7 @@ import styles from './Root.module.css'
 import NavbarContainer from '../components/Navbar/NavbarContainer'
 
 function Root () {
-  let links = ['Profile', 'Dialogs', 'News', 'Music', 'Settings']
+  let links = ['Profile', 'Dialogs', 'News', 'Users', 'Music', 'Settings']
 
   return (
     <div className={styles.appWrapper}>
