@@ -1,4 +1,4 @@
-import { followOrUnfollow, initUsersPage } from './usersPage/initUsersPage'
+import { followOrUnfollow, initUsersPage, setUsers } from './usersPage/initUsersPage'
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -14,6 +14,9 @@ const usersReducer = (usersPage = initUsersPage, action) => {
     case UNFOLLOW: {
       newUsersPage.usersData = followOrUnfollow(newUsersPage.usersData, action.value, false)
       break
+    }
+    case SET_USERS: {
+      newUsersPage.usersData = setUsers(newUsersPage.usersData, action.value)
     }
     default: {
 
