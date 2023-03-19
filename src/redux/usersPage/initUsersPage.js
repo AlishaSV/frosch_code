@@ -15,3 +15,10 @@ export const followOrUnfollow = (usersData, id, followOrUnfollow) => {
   })
   return newUserData
 }
+
+export const setUsers = (usersData, users) => {
+  const newUserData = { ...usersData }
+  newUserData.users = users
+
+  return newUserData
+}
