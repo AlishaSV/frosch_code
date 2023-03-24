@@ -1,3 +1,6 @@
 export const usersData = {
-  users: []
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 100,
+  currentPage: 2
 }

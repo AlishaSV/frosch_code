@@ -22,3 +22,15 @@ export const setUsers = (usersData, users) => {
 
   return newUserData
 }
+
+export const setCurrentPage = (usersData, currentPage) => {
+  const newUserData = { ...usersData }
+  newUserData.currentPage = currentPage
+  return newUserData
+}
+
+export const setTotalUsersCount = (usersData, totalCount) => {
+  const newUserData = { ...usersData }
+  newUserData.totalUsersCount = totalCount
+  return newUserData
+}
