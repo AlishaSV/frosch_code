@@ -2,6 +2,7 @@ import {
   followOrUnfollow,
   initUsersPage,
   setCurrentPage,
+  setToggleIsFetching,
   setTotalUsersCount,
   setUsers
 } from './usersPage/initUsersPage'
@@ -11,6 +12,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 const usersReducer = (usersPage = initUsersPage, action) => {
   const newUsersPage = { ...usersPage }
@@ -33,6 +35,10 @@ const usersReducer = (usersPage = initUsersPage, action) => {
     }
     case SET_TOTAL_USERS_COUNT: {
       newUsersPage.usersData = setTotalUsersCount(newUsersPage.usersData, action.value)
+      break
+    }
+    case TOGGLE_IS_FETCHING: {
+      newUsersPage.usersData = setToggleIsFetching(newUsersPage.usersData, action.value)
     }
   }
   return newUsersPage
@@ -43,5 +49,6 @@ export const unfollowAC = (userId) => ({ type: UNFOLLOW, value: userId })
 export const setUsersAC = (users) => ({ type: SET_USERS, value: users })
 export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, value: currentPage })
 export const setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, value: totalUsersCount })
+export const setIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, value: isFetching })
 
 export default usersReducer

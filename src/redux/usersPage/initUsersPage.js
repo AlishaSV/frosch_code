@@ -34,3 +34,9 @@ export const setTotalUsersCount = (usersData, totalCount) => {
   newUserData.totalUsersCount = totalCount
   return newUserData
 }
+
+export const setToggleIsFetching = (usersData, isFetching) => {
+  const newUserData = { ...usersData }
+  newUserData.isFetching = isFetching
+  return newUserData
+}
