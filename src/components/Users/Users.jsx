@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Users.module.css'
 import userPhoto from '../../images-store/images/icons8-cat-profile-100.png'
+import { NavLink } from 'react-router-dom'
 
 let Users = (props) => {
 
@@ -29,7 +30,9 @@ let Users = (props) => {
           <div key={u?.id}>
             <span>
               <div>
+                <NavLink to={'/profile/' + u.id}>
                 <img src={u?.photos?.small ?? userPhoto} className={styles.userPhoto}/>
+                  </NavLink>
               </div>
               <div>
                 {u?.followed ? <button onClick={() => {props.unfollow(u?.id)}}>Unfollow</button>

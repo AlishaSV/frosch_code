@@ -4,7 +4,8 @@ export const initProfilePage = {
   postsData:
     {
       postInput: '',
-      posts: posts
+      posts: posts,
+      profile: null
     }
 }
 
@@ -40,5 +41,11 @@ export const deletePostById = (id, postsData) => {
 export function changePostInput (postInput, postsData) {
   const newPostsData = { ...postsData }
   newPostsData.postInput = postInput
+  return newPostsData
+}
+
+export function setUserProfile (profile, postsData) {
+  const newPostsData = { ...postsData }
+  newPostsData.profile = profile
   return newPostsData
 }

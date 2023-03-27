@@ -1,8 +1,15 @@
-import { addPost, changePostInput, deletePostById, initProfilePage } from './profilePage/initProfilePage'
+import {
+  addPost,
+  changePostInput,
+  deletePostById,
+  initProfilePage,
+  setUserProfile as originSetUserProfile
+} from './profilePage/initProfilePage'
 
 let ADD_POST = 'ADD-POST'
 let DELETE_POST = 'DELETE-POST'
 let CHANGE_POST_INPUT = 'CHANGE-POST-INPUT'
+let SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 const profileReducer = (profilePage = initProfilePage, action) => {
   const newProfilePage = { ...profilePage }
@@ -19,6 +26,10 @@ const profileReducer = (profilePage = initProfilePage, action) => {
       newProfilePage.postsData = changePostInput(action.value, profilePage.postsData)
       break
     }
+    case SET_USER_PROFILE: {
+      newProfilePage.postsData = originSetUserProfile(action.value, profilePage.postsData)
+      break
+    }
     default: {
       console.log('default case')
     }
@@ -28,16 +39,7 @@ const profileReducer = (profilePage = initProfilePage, action) => {
 }
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
-
-export const deletePostByIdActionCreator = (id) =>
-  ({
-    type: DELETE_POST,
-    value: id
-  })
-
-export const changePostInputActionCreator = (postInput) => ({
-  type: CHANGE_POST_INPUT,
-  value: postInput
-})
-
+export const deletePostByIdActionCreator = (id) => ({ type: DELETE_POST, value: id })
+export const changePostInputActionCreator = (postInput) => ({ type: CHANGE_POST_INPUT, value: postInput })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, value: profile })
 export default profileReducer
