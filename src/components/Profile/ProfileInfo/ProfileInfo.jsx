@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
              src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80"/>
       </div>
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.large}/>
+        <img src={props.profile.photos.large} alt={'profile'}/>
         ava + description
       </div>
     </div>

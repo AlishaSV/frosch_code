@@ -39,6 +39,10 @@ const usersReducer = (usersPage = initUsersPage, action) => {
     }
     case TOGGLE_IS_FETCHING: {
       newUsersPage.usersData = setToggleIsFetching(newUsersPage.usersData, action.value)
+      break
+    }
+    default: {
+      break
     }
   }
   return newUsersPage
