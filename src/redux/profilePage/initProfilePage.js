@@ -5,7 +5,7 @@ export const initProfilePage = {
     {
       postInput: '',
       posts: posts,
-      profile: null
+      profile: {}
     }
 }
 

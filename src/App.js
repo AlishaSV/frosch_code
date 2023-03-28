@@ -20,15 +20,16 @@ const App = () => {
                    <DialogsContainer/>
                  }
           />
-          <Route path="profile/*"
+          <Route path="profile/:userId?/*"
                  element={
                    <ProfileContainer/>
                  }
-          /><Route path="users/*"
-                   element={
-                     <UsersContainer/>
-                   }
-        />
+          />
+          <Route path="users/*"
+                 element={
+                   <UsersContainer/>
+                 }
+          />
           <Route path="news/*" element={<News/>}/>
           <Route path="music/*" element={<Music/>}/>
           <Route path="settings/*" element={<Settings/>}/>

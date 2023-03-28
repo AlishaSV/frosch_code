@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Users.module.css'
 import userPhoto from '../../images-store/images/icons8-cat-profile-100.png'
 import { NavLink } from 'react-router-dom'
+import Preloader from '../Preloader/Preloader'
 
 let Users = (props) => {
 
@@ -11,7 +12,7 @@ let Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
   }
-
+  
   return (
     <div>
       <div>
@@ -25,9 +26,10 @@ let Users = (props) => {
           </button>
         ))}
       </div>
-      {props.users.map((u) =>
-        (
-          <div key={u?.id}>
+      {props?.isFetching ? <Preloader/> :
+        props.users.map((u) =>
+          (
+            <div key={u?.id}>
             <span>
               <div>
                 <NavLink to={'/profile/' + u.id}>
@@ -39,7 +41,7 @@ let Users = (props) => {
                   : <button onClick={() => {props.follow(u?.id)}}>Follow</button>}
               </div>
             </span>
-            <span>
+              <span>
               <span>
                 <div>{u?.name}</div>
               </span>
@@ -48,9 +50,10 @@ let Users = (props) => {
                 <div>{u?.location?.country}</div>
               </span>
             </span>
-          </div>
+            </div>
+          )
         )
-      )}
+      }
     </div>
   )
 }
