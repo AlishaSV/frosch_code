@@ -3,10 +3,11 @@ import Header from './Header'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { setAuthUserData } from '../../redux/auth-reducer'
+import env from 'react-dotenv'
 
 class HeaderContainer extends React.Component {
   componentDidMount () {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+    axios.get(`${env.API_URL}/auth/me`, {
       withCredentials: true
     })
     .then(response => {

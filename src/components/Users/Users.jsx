@@ -3,6 +3,8 @@ import styles from './Users.module.css'
 import userPhoto from '../../images-store/images/icons8-cat-profile-100.png'
 import { NavLink } from 'react-router-dom'
 import Preloader from '../Preloader/Preloader'
+import axios from 'axios'
+import env from 'react-dotenv'
 
 let Users = (props) => {
 
@@ -12,7 +14,7 @@ let Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
   }
-  
+
   return (
     <div>
       <div>
@@ -37,8 +39,36 @@ let Users = (props) => {
                   </NavLink>
               </div>
               <div>
-                {u?.followed ? <button onClick={() => {props.unfollow(u?.id)}}>Unfollow</button>
-                  : <button onClick={() => {props.follow(u?.id)}}>Follow</button>}
+                {u?.followed
+                  ? <button onClick={() => {
+                    axios.delete(`${env.API_URL}/follow/${u.id}`, {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': env.API_KEY
+                      }
+                    })
+                    .then(response => {
+                      if (response.data.resultCode === 0) {
+                        props.unfollow(u?.id)
+                      }
+                    })
+
+                  }}>Unfollow</button>
+
+                  : <button onClick={() => {
+                    axios.post(`${env.API_URL}/follow/${u.id}`, {}, {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': env.API_KEY
+                      }
+                    })
+                    .then(response => {
+                      if (response.data.resultCode === 0) {
+                        props.follow(u?.id)
+                      }
+                    })
+
+                  }}>Follow</button>}
               </div>
             </span>
               <span>
