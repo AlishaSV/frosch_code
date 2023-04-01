@@ -31,7 +31,7 @@ const profileReducer = (profilePage = initProfilePage, action) => {
       break
     }
     default: {
-      console.log('default case')
+      break
     }
   }
 

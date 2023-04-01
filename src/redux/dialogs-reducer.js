@@ -16,7 +16,7 @@ const dialogsReducer = (dialogsPage = initDialogsPage, action) => {
       break
     }
     default: {
-      console.log('default case')
+      break
     }
   }
   return dialogsPageCopy
