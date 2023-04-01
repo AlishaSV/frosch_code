@@ -3,5 +3,6 @@ export const usersData = {
   pageSize: 5,
   totalUsersCount: 100,
   currentPage: 2,
-  isFetching: false
+  isFetching: false,
+  followingInProgress: []
 }

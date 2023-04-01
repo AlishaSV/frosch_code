@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './Users.module.css'
-import userPhoto from '../../images-store/images/icons8-cat-profile-100.png'
-import { NavLink } from 'react-router-dom'
 import Preloader from '../Preloader/Preloader'
 import { authAxiosInstance } from '../../axios'
+import User from './User'
 
 let Users = (props) => {
 
@@ -12,6 +11,29 @@ let Users = (props) => {
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
+  }
+
+  const Unfollow = (user) => {
+    props.toggleFollowingProgress(true, user.id)
+    authAxiosInstance.delete(`follow/${user.id}`)
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        props.unfollow(user?.id)
+      }
+      props.toggleFollowingProgress(false, user.id)
+    })
+  }
+
+  const Follow = (user) => {
+    props.toggleFollowingProgress(true, user.id)
+    authAxiosInstance.post(`follow/${user.id}`)
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        props.follow(user?.id)
+      }
+      props.toggleFollowingProgress(false, user.id)
+    })
+
   }
 
   return (
@@ -28,49 +50,18 @@ let Users = (props) => {
         ))}
       </div>
       {props?.isFetching ? <Preloader/> :
-        props.users.map((u) =>
-          (
-            <div key={u?.id}>
-            <span>
-              <div>
-                <NavLink to={'/profile/' + u.id}>
-                <img src={u?.photos?.small ?? userPhoto} className={styles.userPhoto} alt={'profilePhoto'}/>
-                  </NavLink>
-              </div>
-              <div>
-                {u?.followed
-                  ? <button onClick={() => {
-                    authAxiosInstance.delete(`follow/${u.id}`)
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.unfollow(u?.id)
-                      }
-                    })
-
-                  }}>Unfollow</button>
-
-                  : <button onClick={() => {
-                    authAxiosInstance.post(`follow/${u.id}`)
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.follow(u?.id)
-                      }
-                    })
-
-                  }}>Follow</button>}
-              </div>
-            </span>
-              <span>
-              <span>
-                <div>{u?.name}</div>
-              </span>
-              <span>
-                <div>{u?.location?.city}</div>
-                <div>{u?.location?.country}</div>
-              </span>
-            </span>
-            </div>
-          )
+        props.users.map((user) => user?.id ?
+          <User
+            key={user.id}
+            id={user.id}
+            name={user?.name}
+            location={user?.location}
+            photos={user?.photos}
+            followingInProgress={props?.followingInProgress?.some((id) => id === user.id)}
+            followed={user?.followed}
+            Unfollow={() => {Unfollow(user)}}
+            Follow={() => {Follow(user)}}
+          /> : null
         )
       }
     </div>

@@ -40,3 +40,12 @@ export const setToggleIsFetching = (usersData, isFetching) => {
   newUserData.isFetching = isFetching
   return newUserData
 }
+
+export const followingInProgress = (usersData, isFetching, userId) => {
+  const newUserData = { ...usersData }
+  newUserData.followingInProgress =
+    isFetching ?
+      [...usersData.followingInProgress, userId] :
+      usersData.followingInProgress.filter((user) => user !== userId)
+  return newUserData
+}
