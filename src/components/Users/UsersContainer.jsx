@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import Users from './Users'
-import env from 'react-dotenv'
 import {
   follow,
   setCurrentPage,
@@ -11,28 +9,23 @@ import {
   setUsers,
   unfollow
 } from '../../redux/users-reducer'
+import { getUsers } from '../../api/api'
 
 class UsersContainer extends React.Component {
   componentDidMount () {
     this.props.setIsFetching(true)
-    axios.get(`${env.API_URL}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-      withCredentials: true
-    })
-    .then(response => {
+    getUsers(this.props.currentPage, this.props.pageSize).then(data => {
       this.props.setIsFetching(false)
-      this.props.setUsers(response.data.items)
+      this.props.setUsers(data.items)
     })
   }
 
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber)
     this.props.setIsFetching(true)
-    axios.get(`${env.API_URL}/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-      withCredentials: true
-    })
-    .then(response => {
+    getUsers(pageNumber, this.props.pageSize).then(data => {
       this.props.setIsFetching(false)
-      this.props.setUsers(response.data.items)
+      this.props.setUsers(data.items)
     })
   }
 

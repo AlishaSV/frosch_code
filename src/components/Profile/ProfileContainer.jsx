@@ -1,10 +1,9 @@
 import React from 'react'
 import Profile from './Profile'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { setUserProfile } from '../../redux/profile-reducer'
 import { withRouter } from '../utils'
-import env from 'react-dotenv'
+import { getUserProfile } from '../../api/api'
 
 class ProfileContainer extends React.Component {
 
@@ -12,9 +11,9 @@ class ProfileContainer extends React.Component {
     const { params } = this.props.router
     let userId = params?.userId
     if (userId) {
-      axios.get(`${env.API_URL}/profile/` + userId)
-      .then(response => {
-        this.props.setUserProfile(response.data)
+      getUserProfile(userId)
+      .then(data => {
+        this.props.setUserProfile(data)
       })
     }
   }

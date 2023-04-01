@@ -3,8 +3,7 @@ import styles from './Users.module.css'
 import userPhoto from '../../images-store/images/icons8-cat-profile-100.png'
 import { NavLink } from 'react-router-dom'
 import Preloader from '../Preloader/Preloader'
-import axios from 'axios'
-import env from 'react-dotenv'
+import { authAxiosInstance } from '../../axios'
 
 let Users = (props) => {
 
@@ -41,12 +40,7 @@ let Users = (props) => {
               <div>
                 {u?.followed
                   ? <button onClick={() => {
-                    axios.delete(`${env.API_URL}/follow/${u.id}`, {
-                      withCredentials: true,
-                      headers: {
-                        'API-KEY': env.API_KEY
-                      }
-                    })
+                    authAxiosInstance.delete(`follow/${u.id}`)
                     .then(response => {
                       if (response.data.resultCode === 0) {
                         props.unfollow(u?.id)
@@ -56,12 +50,7 @@ let Users = (props) => {
                   }}>Unfollow</button>
 
                   : <button onClick={() => {
-                    axios.post(`${env.API_URL}/follow/${u.id}`, {}, {
-                      withCredentials: true,
-                      headers: {
-                        'API-KEY': env.API_KEY
-                      }
-                    })
+                    authAxiosInstance.post(`follow/${u.id}`)
                     .then(response => {
                       if (response.data.resultCode === 0) {
                         props.follow(u?.id)

@@ -1,13 +1,12 @@
 import React from 'react'
 import Header from './Header'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { setAuthUserData } from '../../redux/auth-reducer'
-import env from 'react-dotenv'
+import { axiosInstance } from '../../axios'
 
 class HeaderContainer extends React.Component {
   componentDidMount () {
-    axios.get(`${env.API_URL}/auth/me`, {
+    axiosInstance.get(`auth/me`, {
       withCredentials: true
     })
     .then(response => {
