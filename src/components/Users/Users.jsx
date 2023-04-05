@@ -1,39 +1,26 @@
 import React from 'react'
 import styles from './Users.module.css'
 import Preloader from '../Preloader/Preloader'
-import { authAxiosInstance } from '../../axios'
 import User from './User'
 
-let Users = (props) => {
+let Users = ({
+  totalUsersCount,
+  pageSize,
+  toggleFollowingProgress,
+  unfollow,
+  follow,
+  currentPage,
+  onPageChanged,
+  isFetching,
+  users,
+  followingInProgress,
+}) => {
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+  let pagesCount = Math.ceil(totalUsersCount / pageSize)
   let pages = []
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
-  }
-
-  const Unfollow = (user) => {
-    props.toggleFollowingProgress(true, user.id)
-    authAxiosInstance.delete(`follow/${user.id}`)
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        props.unfollow(user?.id)
-      }
-      props.toggleFollowingProgress(false, user.id)
-    })
-  }
-
-  const Follow = (user) => {
-    props.toggleFollowingProgress(true, user.id)
-    authAxiosInstance.post(`follow/${user.id}`)
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        props.follow(user?.id)
-      }
-      props.toggleFollowingProgress(false, user.id)
-    })
-
   }
 
   return (
@@ -42,25 +29,25 @@ let Users = (props) => {
         {pages.map((p, i) => (
           <button
             key={i}
-            className={`${styles.page} ${props.currentPage === p ? styles.selectedPage : null}`}
-            onClick={() => {props.onPageChanged(p)}}
+            className={`${styles.page} ${currentPage === p ? styles.selectedPage : null}`}
+            onClick={() => {onPageChanged(p)}}
           >
             {p}
           </button>
         ))}
       </div>
-      {props?.isFetching ? <Preloader/> :
-        props.users.map((user) => user?.id ?
+      {isFetching ? <Preloader/> :
+        users.map((user) => user?.id ?
           <User
             key={user.id}
             id={user.id}
             name={user?.name}
             location={user?.location}
             photos={user?.photos}
-            followingInProgress={props?.followingInProgress?.some((id) => id === user.id)}
+            followingInProgress={followingInProgress?.some((id) => id === user.id)}
             followed={user?.followed}
-            Unfollow={() => {Unfollow(user)}}
-            Follow={() => {Follow(user)}}
+            Unfollow={() => {unfollow(user?.id)}}
+            Follow={() => {follow(user?.id)}}
           /> : null
         )
       }
