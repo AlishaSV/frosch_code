@@ -5,6 +5,7 @@ import {
   initProfilePage,
   setUserProfile as originSetUserProfile
 } from './profilePage/initProfilePage'
+import { getUserProfile } from '../api/api'
 
 let ADD_POST = 'ADD-POST'
 let DELETE_POST = 'DELETE-POST'
@@ -42,4 +43,14 @@ export const addPostActionCreator = () => ({ type: ADD_POST })
 export const deletePostByIdActionCreator = (id) => ({ type: DELETE_POST, value: id })
 export const changePostInputActionCreator = (postInput) => ({ type: CHANGE_POST_INPUT, value: postInput })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, value: profile })
+
+export const getUserProfileTC = (userId) => {
+  return dispatch => {
+    getUserProfile(userId)
+    .then(data => {
+      dispatch(setUserProfile(data))
+    })
+  }
+}
+
 export default profileReducer
