@@ -19,8 +19,6 @@ export const unfollowUser = (userId) => {
 }
 
 export const authMe = () => {
-  return axiosInstance.get(`auth/me`, {
-    withCredentials: true
-  })
+  return axiosInstance.get(`auth/me`)
 }
 
