@@ -17,7 +17,7 @@ const authReducer = (authData = initAuthData, action) => {
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
 
-export const headerTC = () => {
+export const getAuthUserData = () => {
   return dispatch => {
     authMe()
     .then(response => {
