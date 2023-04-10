@@ -87,6 +87,9 @@ export const follow = (userId) => {
         dispatch(followSuccess(userId))
       }
       dispatch(toggleFollowingProgress(false, userId))
+    }).catch(reason => {
+      alert(reason?.response?.data?.message)
+      dispatch(toggleFollowingProgress(false, userId))
     })
   }
 }

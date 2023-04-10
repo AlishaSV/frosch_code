@@ -14,16 +14,20 @@ const User = ({
         </NavLink>
       </div>
       <div>
-        {followed ? (<button
-          disabled={followingInProgress} onClick={() => {Unfollow()}}
-        >
-          Unfollow
-        </button>) : (<button
-          disabled={followingInProgress}
-          onClick={() => {Follow()}}
-        >
-          Follow
-        </button>)}
+        {followed ? (
+          <button
+            disabled={followingInProgress} onClick={() => {Unfollow()}}
+          >
+            Unfollow
+          </button>
+        ) : (
+          <button
+            disabled={followingInProgress}
+            onClick={() => {Follow()}}
+          >
+            Follow
+          </button>
+        )}
       </div>
     </div>
     <div>

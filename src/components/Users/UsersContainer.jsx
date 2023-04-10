@@ -1,7 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Users from './Users'
 import { follow, getUsersTC, setIsFetching, toggleFollowingProgress, unfollow } from '../../redux/users-reducer'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { connect } from 'react-redux'
 
 class UsersContainer extends React.Component {
   componentDidMount () {
@@ -40,11 +41,11 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
   follow,
   unfollow,
   setIsFetching,
   toggleFollowingProgress,
   getUsersTC
-})(UsersContainer)
+})(UsersContainer))
 
