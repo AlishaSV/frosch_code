@@ -10,6 +10,14 @@ export const getUserProfile = (userId) => {
   .then(response => response.data)
 }
 
+export const getStatus = (userId) => {
+  return axiosInstance.get(`profile/status/` + userId)
+}
+
+export const updateStatus = (status) => {
+  return axiosInstance.put(`profile/status/`, { status })
+}
+
 export const followUser = (userId) => {
   return authAxiosInstance.post(`follow/${userId}`)
 }
@@ -21,4 +29,6 @@ export const unfollowUser = (userId) => {
 export const authMe = () => {
   return axiosInstance.get(`auth/me`)
 }
+
+
 

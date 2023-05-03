@@ -5,7 +5,8 @@ export const initProfilePage = {
     {
       postInput: '',
       posts: posts,
-      profile: {}
+      profile: {},
+      status: ''
     }
 }
 
@@ -47,5 +48,11 @@ export function changePostInput (postInput, postsData) {
 export function setUserProfile (profile, postsData) {
   const newPostsData = { ...postsData }
   newPostsData.profile = profile
+  return newPostsData
+}
+
+export function setStatus (status, postsData) {
+  const newPostsData = { ...postsData }
+  newPostsData.status = status
   return newPostsData
 }

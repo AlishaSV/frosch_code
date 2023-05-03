@@ -1,7 +1,7 @@
 import React from 'react'
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import { getUserProfileTC } from '../../redux/profile-reducer'
+import { getStatusTC, getUserProfileTC, updateStatusTC } from '../../redux/profile-reducer'
 import { withRouter } from '../utils'
 import { compose } from 'redux'
 
@@ -12,24 +12,25 @@ class ProfileContainer extends React.Component {
     let userId = params?.userId
     if (userId) {
       this.props.getUserProfileTC(userId)
+      this.props.getStatusTC(userId)
     }
   }
 
   render () {
     return (
       <div>
-        <Profile {...this.props}/>
+        <Profile {...this.props} status={this.props.status} updateStatus={this.props.updateStatusTC}/>
       </div>
     )
   }
 }
 
 let mapStateToProps = (state) => {
-  const { profile } = state.profilePage.postsData
-  return { profile }
+  const { profile, status } = state.profilePage.postsData
+  return { profile, status }
 }
 
 export default compose(
-  connect(mapStateToProps, { getUserProfileTC }),
+  connect(mapStateToProps, { getUserProfileTC, getStatusTC, updateStatusTC }),
   withRouter
 )(ProfileContainer)
