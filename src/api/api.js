@@ -30,5 +30,9 @@ export const authMe = () => {
   return axiosInstance.get(`auth/me`)
 }
 
+export const loginToApp = () => {
+  return axiosInstance.post('auth/login')
+}
+
 
 

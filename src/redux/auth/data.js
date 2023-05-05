@@ -1,6 +1,7 @@
 export const authData = {
   userId: null,
-  email: null,
+  rememberMe: false,
   login: null,
-  isAuth: false
+  isAuth: false,
+  isLoggedIn: false
 }
