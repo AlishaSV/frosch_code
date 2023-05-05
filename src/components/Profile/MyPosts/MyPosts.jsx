@@ -1,25 +1,15 @@
 import React from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
+import PostsForm from './PostsForm'
 
-const MyPosts = ({ postsData, changePostInput, deletePostById, addPost }) => {
+const MyPosts = ({ postsData, changePostInput, deletePostById }) => {
 
   return (
     <div className={s.posts}>
       <h4>My posts</h4>
       <div>
-        <textarea
-          onChange={(event) => {
-            changePostInput(event.target.value)
-          }}
-          value={postsData.postInput}
-        />
-        <div>
-          <button onClick={() => {
-            addPost()
-          }}>Add post
-          </button>
-        </div>
+        <PostsForm changePostInput={changePostInput}/>
       </div>
       <div className={s.posts}>
         <div>
