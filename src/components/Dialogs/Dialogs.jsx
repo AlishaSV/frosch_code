@@ -2,8 +2,9 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItems'
+import MessageForm from './MessageForm'
 
-const Dialogs = ({ dialogsData, messagesData, changeMessageInput, sendMessage, isAuth }) => {
+const Dialogs = ({ dialogsData, messagesData, sendMessage, isAuth }) => {
 
   return !isAuth ? null : (<div className={s.dialogs}>
     <div className={s.dialogsItem}>
@@ -12,14 +13,7 @@ const Dialogs = ({ dialogsData, messagesData, changeMessageInput, sendMessage, i
     <div className={s.messages}>
       {messagesData.messages.map((messages, index) => <Message key={index} {...messages}/>)}
       <div className={s.text}>
-          <textarea
-            onChange={(event) => {
-              changeMessageInput(event.target.value)
-            }}
-            value={messagesData.messageInput}/>
-        <div>
-          <button onClick={() => {sendMessage()}}>send</button>
-        </div>
+        <MessageForm sendMessage={sendMessage}/>
       </div>
     </div>
   </div>)

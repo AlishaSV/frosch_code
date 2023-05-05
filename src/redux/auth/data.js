@@ -3,5 +3,6 @@ export const authData = {
   rememberMe: false,
   login: null,
   isAuth: false,
-  isLoggedIn: false
+  isLoggedIn: false,
+  isLoading: true
 }

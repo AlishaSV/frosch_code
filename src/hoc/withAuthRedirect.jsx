@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 let mapStateToPropsForRedirect = (state) => {
-  const { isAuth } = state.auth?.authData
-  return { isAuth }
+  const { isAuth, isLoading } = state.auth?.authData
+  return { isAuth, isLoading }
 }
 
 export function withAuthRedirect (Component) {
   function ComponentWithAuthRedirect (props) {
     const navigate = useNavigate()
     useEffect(() => {
-      if (props.isAuth === false) {
+      if (!props.isLoading && props.isAuth === false) {
         navigate('/login')
       }
     }, [props.isAuth, navigate])
