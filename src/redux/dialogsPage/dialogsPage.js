@@ -5,10 +5,6 @@ export const dialogsPage = {
   messagesData: {
     messageInput: '',
     messages: messages,
-    sendMessage: function () {
-      this.messages.push({ id: 4, message: this.messageInput, avatar: '' })
-      this.messageInput = ''
-    }
   }
 }
 
@@ -18,9 +14,24 @@ export function changeMessageInput (messageInput, messagesData) {
   return newMessagesData
 }
 
-export function sendMessage (messagesData) {
+export function sendMessage (messageInput, messagesData) {
   const newMessagesData = { ...messagesData }
-  newMessagesData.messages.push({ id: 4, message: newMessagesData.messageInput, avatar: '' })
+  newMessagesData.messages = [...messagesData.messages]
+  const { messages } = newMessagesData
+
+  let newMessageId = 0
+  if (messages.length >= 1) {
+    const lastElementIndex = messages.length - 1
+    newMessageId = messages[lastElementIndex].id + 1
+  }
+
+  let newMessage = {
+    id: newMessageId,
+    message: messageInput,
+    avatar: 'https://img.icons8.com/?size=512&id=81139&format=png'
+  }
+
   newMessagesData.messageInput = ''
+  newMessagesData.messages.push(newMessage)
   return newMessagesData
 }

@@ -12,7 +12,7 @@ const dialogsReducer = (dialogsPage = initDialogsPage, action) => {
       break
     }
     case SEND_MESSAGE: {
-      dialogsPageCopy.messagesData = sendMessage(messagesData)
+      dialogsPageCopy.messagesData = sendMessage(action.value, messagesData)
       break
     }
     default: {
@@ -22,8 +22,9 @@ const dialogsReducer = (dialogsPage = initDialogsPage, action) => {
   return dialogsPageCopy
 }
 
-export const sendMessageActionCreator = () => ({
+export const sendMessageActionCreator = (messageInput) => ({
   type: SEND_MESSAGE,
+  value: messageInput
 })
 
 export const changeMessageInputActionCreator = (messageInput) => ({
