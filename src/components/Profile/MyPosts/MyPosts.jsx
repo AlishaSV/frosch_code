@@ -3,13 +3,13 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import PostsForm from './PostsForm'
 
-const MyPosts = ({ postsData, changePostInput, deletePostById }) => {
+const MyPosts = ({ postsData, deletePostById, addPost }) => {
 
   return (
     <div className={s.posts}>
       <h4>My posts</h4>
       <div>
-        <PostsForm changePostInput={changePostInput}/>
+        <PostsForm addPost={addPost}/>
       </div>
       <div className={s.posts}>
         <div>

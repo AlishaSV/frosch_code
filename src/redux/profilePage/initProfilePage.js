@@ -3,17 +3,16 @@ import { posts } from './data'
 export const initProfilePage = {
   postsData:
     {
-      postInput: '',
       posts: posts,
       profile: {},
       status: ''
     }
 }
 
-export function addPost (postsData) {
+export function addPost (postInput, postsData) {
   const newPostsData = { ...postsData }
   newPostsData.posts = [...postsData.posts]
-  const { posts, postInput } = newPostsData
+  const { posts } = newPostsData
 
   let newPostId = 0
   if (posts.length >= 1) {
@@ -23,7 +22,6 @@ export function addPost (postsData) {
 
   let newPost = { id: newPostId, message: postInput, likes: 0 }
 
-  newPostsData.postInput = ''
   newPostsData.posts.push(newPost)
 
   return newPostsData

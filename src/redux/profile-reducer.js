@@ -18,7 +18,7 @@ const profileReducer = (profilePage = initProfilePage, action) => {
   const newProfilePage = { ...profilePage }
   switch (action.type) {
     case ADD_POST: {
-      newProfilePage.postsData = addPost(profilePage.postsData)
+      newProfilePage.postsData = addPost(action.value, profilePage.postsData)
       break
     }
     case DELETE_POST: {
@@ -45,9 +45,8 @@ const profileReducer = (profilePage = initProfilePage, action) => {
   return newProfilePage
 }
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
+export const addPostActionCreator = (postInput) => ({ type: ADD_POST, value: postInput })
 export const deletePostByIdActionCreator = (id) => ({ type: DELETE_POST, value: id })
-export const changePostInputActionCreator = (postInput) => ({ type: CHANGE_POST_INPUT, value: postInput })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, value: profile })
 export const setStatus = (status) => ({ type: SET_STATUS, value: status })
 

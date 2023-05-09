@@ -1,9 +1,5 @@
 import MyPosts from './MyPosts'
-import {
-  addPostActionCreator,
-  changePostInputActionCreator,
-  deletePostByIdActionCreator
-} from '../../../redux/profile-reducer'
+import { addPostActionCreator, deletePostByIdActionCreator } from '../../../redux/profile-reducer'
 import { connect } from 'react-redux'
 
 let mapStateToProps = (state) => {
@@ -15,9 +11,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    changePostInput: (postInput) => {dispatch(changePostInputActionCreator(postInput))},
     deletePostById: (id) => {dispatch(deletePostByIdActionCreator(id))},
-    addPost: () => {dispatch(addPostActionCreator())}
+    addPost: (postInput) => {
+      const action = addPostActionCreator(postInput)
+      dispatch(action)
+    }
   }
 }
 
