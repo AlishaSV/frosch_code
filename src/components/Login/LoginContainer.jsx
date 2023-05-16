@@ -3,22 +3,15 @@ import { loginToAppTC } from '../../redux/auth-reducer'
 import Login from './Login'
 import { connect } from 'react-redux'
 
-class LoginContainer extends React.Component {
-  componentDidMount () {
-    this.props.loginToAppTC()
-  }
-
-  render () {
-
-    return (
-      <Login
-        {...this.props}
-        onSubmit={(values) => {
-          console.log(values)
-        }}
-      />
-    )
-  }
+const LoginContainer = ({ loginToAppTC }) => {
+  return (
+    <Login
+      onSubmit={(values) => {
+        const { email, password, rememberMe } = values
+        loginToAppTC(email, password, rememberMe)
+      }}
+    />
+  )
 }
 
 const mapStateToProps = (state) => ({

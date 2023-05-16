@@ -1,5 +1,5 @@
 import { initAuthData } from './auth/initAuthData'
-import { authMe, loginToApp } from '../api/api'
+import { authMe, loginToApp, logout } from '../api/api'
 
 let SET_USER_DATA = 'SET_USER_DATA'
 let LOGIN_TO_APP = 'LOGIN_TO_APP'
@@ -27,7 +27,10 @@ const authReducer = (authData = initAuthData, action) => {
   return newAuthData
 }
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
+export const setAuthUserData = (userId, email, login, isAuth) => ({
+  type: SET_USER_DATA,
+  data: { userId, email, login, isAuth }
+})
 export const setAuthUserInLoadingActionCreator = () => ({ type: IS_LOADING })
 export const setAuthUserIsNotLoginAfterLoadingActionCreator = () => ({ type: IS_NOT_LOGIN_AFTER_LOADING })
 export const setLoginToApp = (email, password, rememberMe) => ({
@@ -42,7 +45,7 @@ export const getAuthUserData = () => {
     .then(response => {
       if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data
-        dispatch(setAuthUserData(id, email, login))
+        dispatch(setAuthUserData(id, email, login, true))
       } else {
         dispatch(setAuthUserIsNotLoginAfterLoadingActionCreator())
       }
@@ -50,13 +53,23 @@ export const getAuthUserData = () => {
   }
 }
 
-export const loginToAppTC = () => {
+export const loginToAppTC = (email, password, rememberMe) => {
   return dispatch => {
-    loginToApp()
+    loginToApp(email, password, rememberMe)
     .then(response => {
       if (response.data.resultCode === 0) {
-        let { email, password, rememberMe } = response.data.data
-        dispatch(setLoginToApp(email, password, rememberMe))
+        dispatch(getAuthUserData())
+      }
+    })
+  }
+}
+
+export const logoutTC = () => {
+  return dispatch => {
+    logout()
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
       }
     })
   }

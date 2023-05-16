@@ -2,7 +2,7 @@ export const authData = {
   userId: null,
   rememberMe: false,
   login: null,
-  isAuth: false,
+  isAuth: true,
   isLoggedIn: false,
   isLoading: true
 }
