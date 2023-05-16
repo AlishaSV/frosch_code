@@ -1,92 +1,57 @@
-// import React from 'react'
-// import { Field, reduxForm } from 'redux-form'
-// import { connect } from 'react-redux'
-// import { loginToAppTC } from '../../redux/auth-reducer'
-//
-// const onSubmit = (formData) => {
-//   console.log(formData)
-// }
-//
-// const LoginForm = ({
-//   handleSubmit
-// }) => {
-//
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <div>
-//         <Field placeholder={'Login'} name={'login'} component={'input'}/>
-//       </div>
-//       <div>
-//         <Field placeholder={'Password'} name={'password'} component={'input'}/>
-//       </div>
-//       <div>
-//         <Field component={'input'} name={'rememberMe'} type={'checkbox'}/> remember me
-//       </div>
-//       <div>
-//         <button>Login</button>
-//       </div>
-//     </form>
-//   )
-// }
-//
-// const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
-//
-// class Login extends React.Component {
-//   componentDidMount () {
-//     this.props.loginToAppTC()
-//   }
-//
-//   render () {
-//
-//     return (
-//       <div>
-//         <h1>Login</h1>
-//         <LoginReduxForm onSubmit={onSubmit} loginToApp={this.props.loginToAppTC}/>
-//       </div>
-//     )
-//   }
-// }
-//
-// const mapStateToProps = (state) => ({
-//   isLoggedIn: state.auth.authData.isLoggedIn
-// })
-//
-// export default connect(mapStateToProps, { loginToAppTC })(Login)
-
 import React from 'react'
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import loginFormSchema from '../FormValidation/LoginFormSchema'
+import styles from './Login.module.css'
 
 const Login = ({ onSubmit }) => (<div>
     <h1>Login</h1>
     <Formik
       initialValues={{ email: '', password: '', rememberMe: false }}
-      validate={values => {
-        const errors = {}
-        if (!values.email) {
-          errors.email = 'Required'
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address'
-        }
-        return errors
-      }
-      }
       onSubmit={onSubmit}
 
-      validationSchema={loginFormSchema}>
-      {() => (
+      validationSchema={loginFormSchema}
+    >
+      {(props) => (
         <Form>
-          <div>
-            <Field type={'email'} name={'email'} placeholder={'email'} autoComplete={'email'}/>
-          </div>
-          <ErrorMessage name="email" component="div"/>
+          <Field name="email">
+            {({
+              field, // { name, value, onChange, onBlur }
+              form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+              meta,
+            }) => (
+              <div>
+                <input
+                  className={meta.touched && meta.error ? styles.errors : styles.inputStyle}
+                  type="email"
+                  placeholder="email" {...field}
+                />
+                {meta.touched && meta.error && (
+                  <div className={styles.errorsMessage}>{meta.error}</div>
+                )}
+              </div>
+            )}
+          </Field>
 
           <div>
-            <Field type={'password'} name={'password'} placeholder={'password'} autoComplete={'password'}/>
+            <Field name={'password'}>
+              {({
+                field, // { name, value, onChange, onBlur }
+                form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                meta,
+              }) => (
+                <div>
+                  <input
+                    className={meta.touched && meta.error ? styles.errors : styles.inputStyle}
+                    type="password"
+                    placeholder="password" {...field}
+                  />
+                  {meta.touched && meta.error && (
+                    <div className={styles.errorsMessage}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
           </div>
-          <ErrorMessage name="password" component="div"/>
 
           <div>
             <Field type={'checkbox'} name={'rememberMe'} placeholder={'rememberMe'}/>

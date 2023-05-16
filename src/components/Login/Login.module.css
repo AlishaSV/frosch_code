@@ -1,0 +1,15 @@
+.errorsMessage {
+	color: red;
+}
+
+.inputStyle {
+	box-sizing: border-box;
+	outline: none;
+	border: 1px solid black;
+}
+
+.errors {
+	box-sizing: border-box;
+	outline: none;
+	border: 1px solid red;
+}
