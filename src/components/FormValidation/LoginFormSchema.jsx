@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 
 const loginFormSchema = Yup.object().shape({
   email: Yup.string()
+  .email()
   .min(2, 'Must be longer than 2 characters')
   .max(50, 'Exceeded the quantity of characters allowed')
   .required('Required'),
