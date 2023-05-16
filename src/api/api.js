@@ -30,9 +30,16 @@ export const authMe = () => {
   return axiosInstance.get(`auth/me`)
 }
 
-export const loginToApp = () => {
-  return axiosInstance.post('auth/login')
+export const loginToApp = (email, password, rememberMe = false) => {
+  return axiosInstance.post(`auth/login`, { email, password, rememberMe })
 }
+
+export const logout = () => {
+  return axiosInstance.delete(`auth/logout`)
+}
+
+
+
 
 
 
