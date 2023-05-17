@@ -35,7 +35,7 @@ export const loginToApp = (email, password, rememberMe = false) => {
 }
 
 export const logout = () => {
-  return axiosInstance.delete(`auth/logout`)
+  return axiosInstance.delete(`auth/login`)
 }
 
 
