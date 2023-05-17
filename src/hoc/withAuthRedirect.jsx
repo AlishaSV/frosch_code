@@ -14,7 +14,11 @@ export function withAuthRedirect (Component) {
       if (!props.isLoading && props.isAuth === false) {
         navigate('/login')
       }
+      if (props.isAuth) {
+        navigate('/profile')
+      }
     }, [props.isAuth, navigate])
+
     return <Component {...props}/>
   }
 
