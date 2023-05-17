@@ -23,7 +23,7 @@ const Login = ({ onSubmit }) => (
             <label htmlFor={'rememberMe'}> remember me </label>
           </div>
 
-          <button type={'submit'}>Log in</button>
+          <button type={'submit'} disabled={!props.isValid}>Log in</button>
         </Form>
       )}
     </Formik>
