@@ -4,7 +4,7 @@ export const initProfilePage = {
   postsData:
     {
       posts: posts,
-      profile: {},
+      profile: null,
       status: ''
     }
 }

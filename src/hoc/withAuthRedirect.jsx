@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 let mapStateToPropsForRedirect = (state) => {
@@ -10,11 +10,12 @@ let mapStateToPropsForRedirect = (state) => {
 export function withAuthRedirect (Component) {
   function ComponentWithAuthRedirect (props) {
     const navigate = useNavigate()
+    const location = useLocation()
     useEffect(() => {
       if (!props.isLoading && props.isAuth === false) {
         navigate('/login')
       }
-      if (props.isAuth) {
+      if (props.isAuth && location.pathname === '/login') {
         navigate('/profile')
       }
     }, [props.isAuth, navigate])

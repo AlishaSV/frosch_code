@@ -6,15 +6,31 @@ import { withRouter } from '../utils'
 import { compose } from 'redux'
 
 class ProfileContainer extends React.Component {
-
   componentDidMount () {
     const { params } = this.props.router
     let userId = params?.userId
-    if (!userId) {
-      userId = 2
+    if (!userId && this.props.authorized) {
+      userId = this.props.authorized
     }
-    this.props.getUserProfileTC(userId)
-    this.props.getStatusTC(userId)
+
+    if (userId) {
+      this.props.getUserProfileTC(userId)
+      this.props.getStatusTC(userId)
+    }
+  }
+
+  componentDidUpdate () {
+    const { params } = this.props.router
+    let userId = params?.userId
+
+    if (!userId && this.props.authorized) {
+      userId = this.props.authorized
+    }
+
+    if (userId && !this.props.profile) {
+      this.props.getUserProfileTC(userId)
+      this.props.getStatusTC(userId)
+    }
   }
 
   render () {
@@ -26,10 +42,12 @@ class ProfileContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => {
-  const { profile, status } = state.profilePage.postsData
-  return { profile, status }
-}
+let mapStateToProps = (state) => ({
+  profile: state.profilePage.postsData.profile,
+  status: state.profilePage.postsData.status,
+  authorized: state.auth.authData.userId,
+  isAuth: state.auth.authData.isAuth
+})
 
 export default compose(
   connect(mapStateToProps, { getUserProfileTC, getStatusTC, updateStatusTC }),
