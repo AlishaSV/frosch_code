@@ -30,4 +30,4 @@ const mapStateToProps = (state) => ({
   isTriedToLogIn: state.auth.authData.isTriedToLogIn
 })
 
-export default compose(withAuthRedirect, connect(mapStateToProps, { loginToAppTC }))(LoginContainer)
+export default compose(connect(mapStateToProps, { loginToAppTC }), withAuthRedirect)(LoginContainer)

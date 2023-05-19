@@ -2,8 +2,9 @@ import React from 'react'
 import Profile from './Profile'
 import { connect } from 'react-redux'
 import { getStatusTC, getUserProfileTC, updateStatusTC } from '../../redux/profile-reducer'
-import { withRouter } from '../utils'
 import { compose } from 'redux'
+import { withRouter } from '../utils'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 class ProfileContainer extends React.Component {
   componentDidMount () {
@@ -31,6 +32,7 @@ class ProfileContainer extends React.Component {
       this.props.getUserProfileTC(userId)
       this.props.getStatusTC(userId)
     }
+
   }
 
   render () {
@@ -49,7 +51,6 @@ let mapStateToProps = (state) => ({
   isAuth: state.auth.authData.isAuth
 })
 
-export default compose(
-  connect(mapStateToProps, { getUserProfileTC, getStatusTC, updateStatusTC }),
-  withRouter
+export default compose(withRouter, withAuthRedirect,
+  connect(mapStateToProps, { getUserProfileTC, getStatusTC, updateStatusTC })
 )(ProfileContainer)
