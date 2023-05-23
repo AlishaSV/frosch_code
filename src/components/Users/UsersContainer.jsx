@@ -4,6 +4,14 @@ import { follow, getUsersTC, setIsFetching, toggleFollowingProgress, unfollow } 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import {
+  getCurrentPage,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers
+} from '../../redux/users-selectors'
 
 class UsersContainer extends React.Component {
   componentDidMount () {
@@ -33,12 +41,12 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.usersData.users,
-    pageSize: state.usersPage.usersData.pageSize,
-    totalUsersCount: state.usersPage.usersData.totalUsersCount,
-    currentPage: state.usersPage.usersData.currentPage,
-    isFetching: state.usersPage.usersData.isFetching,
-    followingInProgress: state.usersPage.usersData.followingInProgress
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state)
   }
 }
 

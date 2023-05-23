@@ -16,7 +16,6 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
-
 const usersReducer = (usersPage = initUsersPage, action) => {
   const newUsersPage = { ...usersPage }
   switch (action.type) {
@@ -67,11 +66,11 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
   userId
 })
 
-export const getUsersTC = (currentPage, pageSize) => {
+export const getUsersTC = (page, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true))
-    dispatch(setCurrentPage(currentPage))
-    getUsers(currentPage, pageSize).then(data => {
+    dispatch(setCurrentPage(page))
+    getUsers(page, pageSize).then(data => {
       dispatch(setIsFetching(false))
       dispatch(setUsers(data.items))
     })
