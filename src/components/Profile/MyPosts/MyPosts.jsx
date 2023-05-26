@@ -5,6 +5,7 @@ import PostsForm from './PostsForm'
 
 const MyPosts = ({ postsData, deletePostById, addPost }) => {
 
+  console.log('RENDER')
   return (
     <div className={s.posts}>
       <h4>My posts</h4>
@@ -13,8 +14,12 @@ const MyPosts = ({ postsData, deletePostById, addPost }) => {
       </div>
       <div className={s.posts}>
         <div>
-          {postsData.posts.map((post, index) => <Post key={index} {...post}
-                                                      deletePost={deletePostById}/>)}
+          {postsData.posts.map((post, index) => (
+            <Post
+              key={index}
+              {...post}
+              deletePost={deletePostById}/>)
+          )}
         </div>
       </div>
     </div>
