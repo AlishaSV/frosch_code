@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import s from './Post.module.css'
 
 const Post = ({ message, likes, id, deletePost }) => {
@@ -15,4 +15,4 @@ const Post = ({ message, likes, id, deletePost }) => {
   )
 }
 
-export default Post
+export default memo(Post)
